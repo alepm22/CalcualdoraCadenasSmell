@@ -30,7 +30,7 @@ jobs:
         run: npm install
 
       - name: Run Jest with coverage
-        run: npm test-once -- --coverage
+        run: npm run test-once -- --coverage
 
       - name: Publish Jest Coverage Report
         uses: ArtiomTr/jest-coverage-report-action@v2.0-rc.1

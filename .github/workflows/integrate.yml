@@ -2,6 +2,17 @@ jobs:
   test:
     runs-on: ubuntu-latest
     steps:
+ name: Jest Coverage Report for All Commits
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
       - uses: actions/checkout@v2
         with:
           fetch-depth: 0  # Asegura que obtienes todo el historial de commits

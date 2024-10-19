@@ -1,8 +1,4 @@
-jobs:
-  test:
-    runs-on: ubuntu-latest
-    steps:
- name: Jest Coverage Report for All Commits
+name: Jest Coverage Report for All Commits
 
 on:
   push:

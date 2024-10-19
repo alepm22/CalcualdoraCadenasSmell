@@ -35,6 +35,10 @@ jobs:
 
             # Publicar reporte de cobertura utilizando el plugin
             echo "Publishing coverage report for commit: $commit"
-            GITHUB_SHA=$commit
-            jest-coverage-report-action --github-token=${{ secrets.GITHUB_TOKEN }} --commit=$commit
+            # Invocar la acción jest-coverage-report
+            - name: Publish Jest Coverage Report
+              uses: ArtiomTr/jest-coverage-report-action@v2.0-rc.1
+              with:
+                github-token: ${{ secrets.GITHUB_TOKEN }}
+                commit: $commit
           done

@@ -1,4 +1,4 @@
-name: Jest Coverage Report for All Commits
+name: Jest Coverage Report for Each Commit
 
 on:
   push:
@@ -6,38 +6,33 @@ on:
       - main
 
 jobs:
-  test:
+  run-tests:
     runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        commit: ${{ github.event.commits[*].id }}  # Recoge todos los commits en el push
+
     steps:
       - uses: actions/checkout@v2
         with:
-          fetch-depth: 0  # Asegura que obtienes todo el historial de commits
+          fetch-depth: 0
 
       - name: Set up Node.js
         uses: actions/setup-node@v2
         with:
           node-version: '14'
 
-      - name: Get commit history in push
-        run: |
-          git log --pretty=format:"%H" origin/${{ github.ref_name }} > commits.txt
+      - name: Check out specific commit
+        run: git checkout ${{ matrix.commit }}
 
-      - name: Run Jest for each commit
-        run: |
-          commits=$(cat commits.txt)
-          for commit in $commits; do
-            echo "Running tests for commit: $commit"
+      - name: Install dependencies
+        run: npm install
 
-            # Recorremos los commits uno por uno y ejecutamos Jest
-            git checkout $commit
-            npm install
-            npm test -- --coverage
+      - name: Run Jest with coverage
+        run: npm test -- --coverage
 
-            # Publicamos el reporte de cobertura
-            echo "Publishing coverage report for commit: $commit"
-            GITHUB_SHA=$commit
-            curl -X POST -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" \
-              -H "Content-Type: application/json" \
-              -d "{\"body\": \"Jest Coverage for commit: $commit\"}" \
-              "https://api.github.com/repos/${{ github.repository }}/commits/$commit/comments"
-          done
+      - name: Publish Jest Coverage Report
+        uses: ArtiomTr/jest-coverage-report-action@v2.0-rc.1
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}

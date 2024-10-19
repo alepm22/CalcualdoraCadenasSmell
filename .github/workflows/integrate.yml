@@ -11,7 +11,7 @@ jobs:
     steps:
       - uses: actions/checkout@v2
         with:
-          fetch-depth: 0  # Asegura que obtienes todo el historial de commits
+          fetch-depth: 1  # Solo obtiene el último commit del push
 
       - name: Set up Node.js
         uses: actions/setup-node@v2
@@ -20,7 +20,8 @@ jobs:
 
       - name: Get commit history in push
         run: |
-          git log --pretty=format:"%H" origin/${{ github.ref_name }} > commits.txt
+          git fetch --prune --unshallow  # Hacer el repositorio "shallow" para obtener el historial
+          git rev-list --reverse --no-merges HEAD..origin/main > commits.txt
 
       - name: Run Jest for each commit
         run: |
@@ -31,13 +32,9 @@ jobs:
             # Recorremos los commits uno por uno y ejecutamos Jest
             git checkout $commit
             npm install
-            npm run test-once -- --coverage
+            npm test -- --coverage --ci --runInBand
 
-            # Publicamos el reporte de cobertura
+            # Publicar reporte de cobertura utilizando el plugin
             echo "Publishing coverage report for commit: $commit"
-            GITHUB_SHA=$commit
-            curl -X POST -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" \
-              -H "Content-Type: application/json" \
-              -d "{\"body\": \"Jest Coverage for commit: $commit\"}" \
-              "https://api.github.com/repos/${{ github.repository }}/commits/$commit/comments"
+            jest-coverage-report-action --github-token=${{ secrets.GITHUB_TOKEN }} --commit=$commit
           done

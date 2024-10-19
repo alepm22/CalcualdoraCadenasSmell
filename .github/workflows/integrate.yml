@@ -31,7 +31,7 @@ jobs:
             # Recorremos los commits uno por uno y ejecutamos Jest
             git checkout $commit
             npm install
-            npm test -- --coverage --ci --runInBand
+            npm run test-once -- --coverage --ci --runInBand
 
             # Publicar reporte de cobertura utilizando el plugin
             echo "Publishing coverage report for commit: $commit"

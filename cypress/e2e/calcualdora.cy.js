@@ -38,9 +38,16 @@ describe('Pruebas para calcularSumaCadenas', () => {
     
       it('Nuemro mayor a 1000 son ignorados', () => {
         cy.visit('/');
-        cy.get('#input-cadena').type('1000-22-3-4');  // Ingresa la cadena '1234'
+        cy.get('#input-cadena').type('1001-22-3-4');  // Ingresa la cadena '1234'
         cy.get('#btn-calcular').click();
         cy.get('#resultado-div').should('contain', '29');  // La suma de 1 (primer dígito) + 3 (tercer dígito) = 4
+      });
+
+      it('Delimitador especifico', () => {
+        cy.visit('/');
+        cy.get('#input-cadena').type('//[;] 6,3-2;1');  // Ingresa la cadena '1234'
+        cy.get('#btn-calcular').click();
+        cy.get('#resultado-div').should('contain', '12');  // La suma de 1 (primer dígito) + 3 (tercer dígito) = 4
       });
   });
   

@@ -15,9 +15,9 @@ function calcularSumaCadena(cadena) {
     const numeros = numerosCadena.split(delimitadores);
   
     let suma = 0;
-    for (let i = 0; i < numeros.length; i++) {
-      if(numeros[i] <= 1000)
-        suma += parseInt(numeros[i]);
+    for (let indice = 0; indice < numeros.length; indice++) {
+      if(numeros[indice] <= 1000)
+        suma += parseInt(numeros[indice]);
     }
   
     return suma;

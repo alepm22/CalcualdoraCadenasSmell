@@ -1,4 +1,4 @@
-/*describe('Pruebas para calcularSumaCadenas', () => {
+describe('Pruebas para calcularSumaCadenas', () => {
   
     it('Devuelve 0 si la cadena está vacía', () => {
       cy.visit('/');
@@ -28,6 +28,13 @@
         cy.get('#btn-calcular').click();
         cy.get('#resultado-div').should('contain', '29');  // La suma de 1 (primer dígito) + 3 (tercer dígito) = 4
       });
+
+      it('Devuelve la suma de numeros que tengas numeros separados por guiones', () => {
+        cy.visit('/');
+        cy.get('#input-cadena').type('22-3-4');  // Ingresa la cadena '1234'
+        cy.get('#btn-calcular').click();
+        cy.get('#resultado-div').should('contain', '29');  // La suma de 1 (primer dígito) + 3 (tercer dígito) = 4
+      });
     
   });
-  */
+  

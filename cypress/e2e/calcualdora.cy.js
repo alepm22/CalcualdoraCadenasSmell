@@ -13,6 +13,13 @@ describe('Pruebas para calcularSumaCadenas', () => {
       cy.get('#btn-calcular').click();
       cy.get('#resultado-div').should('contain', '1'); // Verifica que el resultado sea 1
     });
+
+    it('Devuelve la suma de dos digitos', () => {
+        cy.visit('/');
+        cy.get('#input-cadena').type('2 3');  // Ingresa la cadena '1234'
+        cy.get('#btn-calcular').click();
+        cy.get('#resultado-div').should('contain', '5');  // La suma de 1 (primer dígito) + 3 (tercer dígito) = 4
+      });
     
   });
   

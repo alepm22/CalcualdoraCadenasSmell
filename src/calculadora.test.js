@@ -22,5 +22,9 @@ describe("Sumar digitos", () => {
     expect(calcularSumaCadena("11,4,1")).toEqual(16);
   });
 
+  it("Si la cadena recibe numeros separados por guiones y retorna la suma de los numeros", () => {
+    expect(calcularSumaCadena("11-4-1")).toEqual(16);
+  });
+
 });
 

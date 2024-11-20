@@ -7,7 +7,8 @@ function calcularSumaCadena(cadena) {
   
     let suma = 0;
     for (let i = 0; i < numeros.length; i++) {
-      suma += parseInt(numeros[i]);
+      if(numeros[i] <= 1000)
+        suma += parseInt(numeros[i]);
     }
   
     return suma;

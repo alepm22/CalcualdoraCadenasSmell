@@ -29,6 +29,8 @@ describe("Sumar digitos", () => {
     expect(calcularSumaCadena("10001,2-3-13")).toEqual(18);
   });
 
-
+  it("Agregar delimitador especificado", () => {
+    expect(calcularSumaCadena("//[;] 6,3-2;1")).toEqual(12);
+  });
 
 });

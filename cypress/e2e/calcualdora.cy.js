@@ -14,18 +14,19 @@ describe('Pruebas para calcularSumaCadenas', () => {
       cy.get('#resultado-div').should('contain', '1'); // Verifica que el resultado sea 1
     });
 
-    it('Devuelve la suma de dos digitos', () => {
-        cy.visit('/');
-        cy.get('#input-cadena').type('2 3');  // Ingresa la cadena '1234'
-        cy.get('#btn-calcular').click();
-        cy.get('#resultado-div').should('contain', '5');  // La suma de 1 (primer dígito) + 3 (tercer dígito) = 4
-      });
 
       it('Devuelve la suma de mas digitos', () => {
         cy.visit('/');
         cy.get('#input-cadena').type('2,3,4');  // Ingresa la cadena '1234'
         cy.get('#btn-calcular').click();
         cy.get('#resultado-div').should('contain', '9');  // La suma de 1 (primer dígito) + 3 (tercer dígito) = 4
+      });
+
+      it('Devuelve la suma de numeros que tengas mas de 2 digitos en uno', () => {
+        cy.visit('/');
+        cy.get('#input-cadena').type('22,3,4');  // Ingresa la cadena '1234'
+        cy.get('#btn-calcular').click();
+        cy.get('#resultado-div').should('contain', '29');  // La suma de 1 (primer dígito) + 3 (tercer dígito) = 4
       });
     
   });

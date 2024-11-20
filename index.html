@@ -1,15 +1,18 @@
-<html>
-  <body>
-    <h1>Sumador</h1>
-    <form id="sumar-form">
-      <label for="primer-numero">Primer número:</label>
-      <input type="number" id="primer-numero" />
-      <label for="segundo-numero">Segundo número:</label>
-      <input type="number" id="segundo-numero" />
-      <input type="submit" value="Sumar" id="sumar-button" />
-    </form>
-    <div id="resultado-div"></div>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Calculadora de Sumas</title>
+</head>
+<body>
+  <form id="form-calculadora">
+    <label for="input-cadena">Ingrese la cadena:</label>
+    <input type="text" id="input-cadena" placeholder="Ejemplo: 1,2,3">
+    <button type="button" id="btn-calcular">Calcular</button>
+  </form>
+  <div id="resultado-div"></div>
+  <script type="module" src="./src/presenter.js"></script>
 
-    <script type="module" src="./src/presenter.js"></script>
-  </body>
+</body>
 </html>

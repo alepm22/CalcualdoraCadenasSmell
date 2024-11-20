@@ -9,13 +9,17 @@ describe("Sumar digitos", () => {
     expect(calcularSumaCadena("1")).toEqual(1);
   });
 
-  it("Si la cadena recibe 2 numeros debe retornar la suma de los nuemeros", () => {
+  it("Si la cadena recibe 2 numeros debe retornar la suma de los numeros", () => {
     expect(calcularSumaCadena("1,4")).toEqual(5);
   });
 
   
-  it("Si la cadena recibe mas numeros debe retornar la suma de los nuemeros", () => {
+  it("Si la cadena recibe mas numeros debe retornar la suma de los numeros", () => {
     expect(calcularSumaCadena("1,4,1")).toEqual(6);
+  });
+
+  it("Si la cadena recibe mas numeros en un digito debe retornar la suma de los numeros", () => {
+    expect(calcularSumaCadena("11,4,1")).toEqual(16);
   });
 
 });

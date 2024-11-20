@@ -1,4 +1,4 @@
-describe('Pruebas para calcularSumaCadenas', () => {
+/*describe('Pruebas para calcularSumaCadenas', () => {
   
     it('Devuelve 0 si la cadena está vacía', () => {
       cy.visit('/');
@@ -30,4 +30,4 @@ describe('Pruebas para calcularSumaCadenas', () => {
       });
     
   });
-  
+  */

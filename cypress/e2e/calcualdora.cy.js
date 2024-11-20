@@ -20,6 +20,13 @@ describe('Pruebas para calcularSumaCadenas', () => {
         cy.get('#btn-calcular').click();
         cy.get('#resultado-div').should('contain', '5');  // La suma de 1 (primer dígito) + 3 (tercer dígito) = 4
       });
+
+      it('Devuelve la suma de mas digitos', () => {
+        cy.visit('/');
+        cy.get('#input-cadena').type('2,3,4');  // Ingresa la cadena '1234'
+        cy.get('#btn-calcular').click();
+        cy.get('#resultado-div').should('contain', '9');  // La suma de 1 (primer dígito) + 3 (tercer dígito) = 4
+      });
     
   });
   

@@ -13,5 +13,10 @@ describe("Sumar digitos", () => {
     expect(calcularSumaCadena("1,4")).toEqual(5);
   });
 
+  
+  it("Si la cadena recibe mas numeros debe retornar la suma de los nuemeros", () => {
+    expect(calcularSumaCadena("1,4,1")).toEqual(6);
+  });
+
 });
 
